@@ -44,25 +44,29 @@ namespace XUnpack
 		{
 			var client = new Octokit.GitHubClient(new ProductHeaderValue("XUnpack"));
 			var releases = client.Release.GetAll("xercodo", "XUnpack");
-			var latest = releases.Result[0];
-
-			Version ver = Assembly.GetExecutingAssembly().GetName().Version;
-			string currentVersion = ver.Major + "." + ver.Minor;
-			if (currentVersion != latest.TagName)
+			try
 			{
-				DialogResult result = MessageBox.Show(this, "There's a newer version of XUnpack!\r\n\r\n" +
-					"Current: " + currentVersion + "\r\n" +
-					"Latest Version: " + latest.TagName + "\r\n\r\n" +
-					"Do you want to visit the release page now?",
-					"Newer Version", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-				if (result == System.Windows.Forms.DialogResult.Yes)
+				var latest = releases.Result[0];
+
+				Version ver = Assembly.GetExecutingAssembly().GetName().Version;
+				string currentVersion = ver.Major + "." + ver.Minor;
+				if (currentVersion != latest.TagName)
 				{
-					Process proc = new Process();
-					proc.StartInfo = new ProcessStartInfo(latest.HtmlUrl);
-					proc.Start();
-					this.Close();
+					DialogResult result = MessageBox.Show(this, "There's a newer version of XUnpack!\r\n\r\n" +
+						"Current: " + currentVersion + "\r\n" +
+						"Latest Version: " + latest.TagName + "\r\n\r\n" +
+						"Do you want to visit the release page now?",
+						"Newer Version", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+					if (result == System.Windows.Forms.DialogResult.Yes)
+					{
+						Process proc = new Process();
+						proc.StartInfo = new ProcessStartInfo(latest.HtmlUrl);
+						proc.Start();
+						this.Close();
+					}
 				}
 			}
+			catch { }
 		}
 
 		private void UpdateList()
@@ -168,7 +172,7 @@ namespace XUnpack
 		{
 			for (int i = 0; i < listBoxUpdate.Items.Count; i++)
 			{
-				listBoxUpdate.SetItemChecked(i, chkAll.Checked);
+				listBoxUpdate.SetItemChecked(i, chkAllUpdate.Checked);
 			}
 		}
 	}
