@@ -58,5 +58,89 @@ namespace XUnpack.Properties {
                 this["Output"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool English {
+            get {
+                return ((bool)(this["English"]));
+            }
+            set {
+                this["English"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool German {
+            get {
+                return ((bool)(this["German"]));
+            }
+            set {
+                this["German"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool French {
+            get {
+                return ((bool)(this["French"]));
+            }
+            set {
+                this["French"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Spanish {
+            get {
+                return ((bool)(this["Spanish"]));
+            }
+            set {
+                this["Spanish"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Russian {
+            get {
+                return ((bool)(this["Russian"]));
+            }
+            set {
+                this["Russian"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Italian {
+            get {
+                return ((bool)(this["Italian"]));
+            }
+            set {
+                this["Italian"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Seperate {
+            get {
+                return ((bool)(this["Seperate"]));
+            }
+            set {
+                this["Seperate"] = value;
+            }
+        }
     }
 }

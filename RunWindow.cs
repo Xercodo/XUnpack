@@ -54,9 +54,6 @@ namespace XUnpack
                 seperator = seperator.PadRight(69, '=');
                 WriteAsynch(seperator + "\r\n");
 
-				if(item.Contains(@"HomeworldRM\DataUpdates\"))
-
-
                 WriteAsynch("Starting Decryptor...\r\n");
                 Process decrypt = new Process();
                 decrypt.StartInfo.FileName = "bigDecrypter.exe";
@@ -89,16 +86,29 @@ namespace XUnpack
                 WriteAsynch(name + " is done.\r\n");
 
 				string args = "";
+				string folderName = name;
+
+				if(!Properties.Settings.Default.Seperate)
+				{
+					if(item.Contains(@"HomeworldRM\DataUpdates\"))
+					{
+						folderName = "DataUpdates";
+					}
+					else
+					{
+						folderName = "Data";
+					}
+				}
 
 				if(noDecrypt)
 				{
-					args = "-e \"" + MainForm.outputDir + "\\" + name + "\" -a \"" + name + ".big\"";
+					args = "-e \"" + MainForm.outputDir + "\\" + folderName + "\" -a \"" + name + ".big\"";
 					string copyPath = Path.GetDirectoryName(path) + "\\" + name + ".big";
 					File.Copy(item, copyPath);
 				}
 				else
 				{
-					args = "-e \"" + MainForm.outputDir + "\\" + name + "\" -a \"" + name + "_decrypted.big\"";
+					args = "-e \"" + MainForm.outputDir + "\\" + folderName + "\" -a \"" + name + "_decrypted.big\"";
 				}
 
 				WriteAsynch("Starting archiver...\r\n");
@@ -146,7 +156,10 @@ namespace XUnpack
 
                 this.Invoke((MethodInvoker)delegate
                 {
-                    SetProgressNoAnimation(toolStripProgressBar1, ((i + 1) * stepAmount));
+					int newValue = ((i + 1) * stepAmount);
+					if ((i + 1) == runList.Count && stepAmount < newValue)
+						newValue = 100;
+                    SetProgressNoAnimation(toolStripProgressBar1, newValue);
                 });
             }
 
@@ -175,7 +188,7 @@ namespace XUnpack
         }
 
         /// <summary>
-        /// Used to circumvent the animations used on progress bars inWindows 7 and up.
+        /// Used to circumvent the animations used on progress bars in Windows 7 and up.
         /// Includes a Update() call to take care of redraw.
         /// </summary>
         /// <param name="pb">The progress bar to be updated</param>

@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.listBoxData = new System.Windows.Forms.CheckedListBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -39,12 +40,22 @@
 			this.btnGo = new System.Windows.Forms.Button();
 			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.chkAll = new System.Windows.Forms.CheckBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabData = new System.Windows.Forms.TabPage();
+			this.chkAll = new System.Windows.Forms.CheckBox();
 			this.tabUpdates = new System.Windows.Forms.TabPage();
 			this.listBoxUpdate = new System.Windows.Forms.CheckedListBox();
 			this.chkAllUpdate = new System.Windows.Forms.CheckBox();
+			this.chkSeperate = new System.Windows.Forms.CheckBox();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.chkMultiLingual = new System.Windows.Forms.CheckBox();
+			this.chkSpanish = new System.Windows.Forms.CheckBox();
+			this.chkRussian = new System.Windows.Forms.CheckBox();
+			this.chkItalian = new System.Windows.Forms.CheckBox();
+			this.chkFrench = new System.Windows.Forms.CheckBox();
+			this.chkGerman = new System.Windows.Forms.CheckBox();
+			this.chkEnglish = new System.Windows.Forms.CheckBox();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -54,6 +65,7 @@
 			this.tabControl1.SuspendLayout();
 			this.tabData.SuspendLayout();
 			this.tabUpdates.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listBoxData
@@ -63,7 +75,7 @@
 			this.listBoxData.Location = new System.Drawing.Point(3, 20);
 			this.listBoxData.Name = "listBoxData";
 			this.listBoxData.ScrollAlwaysVisible = true;
-			this.listBoxData.Size = new System.Drawing.Size(186, 123);
+			this.listBoxData.Size = new System.Drawing.Size(220, 476);
 			this.listBoxData.TabIndex = 0;
 			// 
 			// groupBox1
@@ -157,24 +169,14 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.chkSeperate);
+			this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
 			this.splitContainer1.Panel2.Controls.Add(this.btnGo);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
 			this.splitContainer1.Size = new System.Drawing.Size(664, 525);
 			this.splitContainer1.SplitterDistance = 234;
 			this.splitContainer1.TabIndex = 4;
-			// 
-			// chkAll
-			// 
-			this.chkAll.AutoSize = true;
-			this.chkAll.Dock = System.Windows.Forms.DockStyle.Top;
-			this.chkAll.Location = new System.Drawing.Point(3, 3);
-			this.chkAll.Name = "chkAll";
-			this.chkAll.Size = new System.Drawing.Size(186, 17);
-			this.chkAll.TabIndex = 1;
-			this.chkAll.Text = "(De)Select All";
-			this.chkAll.UseVisualStyleBackColor = true;
-			this.chkAll.CheckedChanged += new System.EventHandler(this.chkAll_CheckedChanged);
 			// 
 			// tabControl1
 			// 
@@ -194,10 +196,22 @@
 			this.tabData.Location = new System.Drawing.Point(4, 22);
 			this.tabData.Name = "tabData";
 			this.tabData.Padding = new System.Windows.Forms.Padding(3);
-			this.tabData.Size = new System.Drawing.Size(192, 146);
+			this.tabData.Size = new System.Drawing.Size(226, 499);
 			this.tabData.TabIndex = 0;
 			this.tabData.Text = "Data";
 			this.tabData.UseVisualStyleBackColor = true;
+			// 
+			// chkAll
+			// 
+			this.chkAll.AutoSize = true;
+			this.chkAll.Dock = System.Windows.Forms.DockStyle.Top;
+			this.chkAll.Location = new System.Drawing.Point(3, 3);
+			this.chkAll.Name = "chkAll";
+			this.chkAll.Size = new System.Drawing.Size(220, 17);
+			this.chkAll.TabIndex = 1;
+			this.chkAll.Text = "(De)Select All";
+			this.chkAll.UseVisualStyleBackColor = true;
+			this.chkAll.CheckedChanged += new System.EventHandler(this.chkAll_CheckedChanged);
 			// 
 			// tabUpdates
 			// 
@@ -233,6 +247,112 @@
 			this.chkAllUpdate.UseVisualStyleBackColor = true;
 			this.chkAllUpdate.CheckedChanged += new System.EventHandler(this.chkAllUpdate_CheckedChanged);
 			// 
+			// chkSeperate
+			// 
+			this.chkSeperate.AutoSize = true;
+			this.chkSeperate.Location = new System.Drawing.Point(305, 164);
+			this.chkSeperate.Name = "chkSeperate";
+			this.chkSeperate.Size = new System.Drawing.Size(109, 17);
+			this.chkSeperate.TabIndex = 5;
+			this.chkSeperate.Text = "Seperate folders?";
+			this.toolTip1.SetToolTip(this.chkSeperate, "If checked each big file will be extracted into its own folder.\r\n\r\nIf unchecked b" +
+        "ig files will be extracted into Data and DataUpdates folders.");
+			this.chkSeperate.UseVisualStyleBackColor = true;
+			this.chkSeperate.CheckedChanged += new System.EventHandler(this.chkSeperate_CheckedChanged);
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.chkMultiLingual);
+			this.groupBox3.Controls.Add(this.chkSpanish);
+			this.groupBox3.Controls.Add(this.chkRussian);
+			this.groupBox3.Controls.Add(this.chkItalian);
+			this.groupBox3.Controls.Add(this.chkFrench);
+			this.groupBox3.Controls.Add(this.chkGerman);
+			this.groupBox3.Controls.Add(this.chkEnglish);
+			this.groupBox3.Location = new System.Drawing.Point(17, 135);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(130, 183);
+			this.groupBox3.TabIndex = 4;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "What\'s your language?";
+			// 
+			// chkMultiLingual
+			// 
+			this.chkMultiLingual.AutoSize = true;
+			this.chkMultiLingual.Location = new System.Drawing.Point(6, 157);
+			this.chkMultiLingual.Name = "chkMultiLingual";
+			this.chkMultiLingual.Size = new System.Drawing.Size(111, 17);
+			this.chkMultiLingual.TabIndex = 0;
+			this.chkMultiLingual.Text = "Multilingual as hell";
+			this.chkMultiLingual.UseVisualStyleBackColor = true;
+			this.chkMultiLingual.CheckedChanged += new System.EventHandler(this.chkMultiLingual_CheckedChanged);
+			// 
+			// chkSpanish
+			// 
+			this.chkSpanish.AutoSize = true;
+			this.chkSpanish.Location = new System.Drawing.Point(6, 134);
+			this.chkSpanish.Name = "chkSpanish";
+			this.chkSpanish.Size = new System.Drawing.Size(64, 17);
+			this.chkSpanish.TabIndex = 0;
+			this.chkSpanish.Text = "Spanish";
+			this.chkSpanish.UseVisualStyleBackColor = true;
+			this.chkSpanish.CheckedChanged += new System.EventHandler(this.chkLanguage_CheckedChanged);
+			// 
+			// chkRussian
+			// 
+			this.chkRussian.AutoSize = true;
+			this.chkRussian.Location = new System.Drawing.Point(6, 111);
+			this.chkRussian.Name = "chkRussian";
+			this.chkRussian.Size = new System.Drawing.Size(64, 17);
+			this.chkRussian.TabIndex = 0;
+			this.chkRussian.Text = "Russian";
+			this.chkRussian.UseVisualStyleBackColor = true;
+			this.chkRussian.CheckedChanged += new System.EventHandler(this.chkLanguage_CheckedChanged);
+			// 
+			// chkItalian
+			// 
+			this.chkItalian.AutoSize = true;
+			this.chkItalian.Location = new System.Drawing.Point(6, 88);
+			this.chkItalian.Name = "chkItalian";
+			this.chkItalian.Size = new System.Drawing.Size(54, 17);
+			this.chkItalian.TabIndex = 0;
+			this.chkItalian.Text = "Italian";
+			this.chkItalian.UseVisualStyleBackColor = true;
+			this.chkItalian.CheckedChanged += new System.EventHandler(this.chkLanguage_CheckedChanged);
+			// 
+			// chkFrench
+			// 
+			this.chkFrench.AutoSize = true;
+			this.chkFrench.Location = new System.Drawing.Point(6, 65);
+			this.chkFrench.Name = "chkFrench";
+			this.chkFrench.Size = new System.Drawing.Size(59, 17);
+			this.chkFrench.TabIndex = 0;
+			this.chkFrench.Text = "French";
+			this.chkFrench.UseVisualStyleBackColor = true;
+			this.chkFrench.CheckedChanged += new System.EventHandler(this.chkLanguage_CheckedChanged);
+			// 
+			// chkGerman
+			// 
+			this.chkGerman.AutoSize = true;
+			this.chkGerman.Location = new System.Drawing.Point(6, 42);
+			this.chkGerman.Name = "chkGerman";
+			this.chkGerman.Size = new System.Drawing.Size(63, 17);
+			this.chkGerman.TabIndex = 0;
+			this.chkGerman.Text = "German";
+			this.chkGerman.UseVisualStyleBackColor = true;
+			this.chkGerman.CheckedChanged += new System.EventHandler(this.chkLanguage_CheckedChanged);
+			// 
+			// chkEnglish
+			// 
+			this.chkEnglish.AutoSize = true;
+			this.chkEnglish.Location = new System.Drawing.Point(6, 19);
+			this.chkEnglish.Name = "chkEnglish";
+			this.chkEnglish.Size = new System.Drawing.Size(60, 17);
+			this.chkEnglish.TabIndex = 0;
+			this.chkEnglish.Text = "English";
+			this.chkEnglish.UseVisualStyleBackColor = true;
+			this.chkEnglish.CheckedChanged += new System.EventHandler(this.chkLanguage_CheckedChanged);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +368,7 @@
 			this.groupBox2.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
@@ -255,6 +376,8 @@
 			this.tabData.PerformLayout();
 			this.tabUpdates.ResumeLayout(false);
 			this.tabUpdates.PerformLayout();
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -277,6 +400,16 @@
 		private System.Windows.Forms.TabPage tabUpdates;
 		private System.Windows.Forms.CheckedListBox listBoxUpdate;
 		private System.Windows.Forms.CheckBox chkAllUpdate;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.CheckBox chkRussian;
+		private System.Windows.Forms.CheckBox chkItalian;
+		private System.Windows.Forms.CheckBox chkFrench;
+		private System.Windows.Forms.CheckBox chkGerman;
+		private System.Windows.Forms.CheckBox chkEnglish;
+		private System.Windows.Forms.CheckBox chkMultiLingual;
+		private System.Windows.Forms.CheckBox chkSpanish;
+		private System.Windows.Forms.CheckBox chkSeperate;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }
 
