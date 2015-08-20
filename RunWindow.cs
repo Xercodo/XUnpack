@@ -38,7 +38,7 @@ namespace XUnpack
             //Thread.Sleep(100);
 
             int stepAmount = 100 / runList.Count;
-			string path = MainForm.homeworldDir + "\\GBXTools\\WorkshopTool\\Archive.exe";
+			string path = Properties.Settings.Default.HomeworldDir + "\\GBXTools\\WorkshopTool\\Archive.exe";
 			string dir = Path.GetDirectoryName(path);
 
             for (int i = 0; i < runList.Count; i++)
@@ -88,9 +88,9 @@ namespace XUnpack
 				string args = "";
 				string folderName = name;
 
-				if(!Properties.Settings.Default.Seperate)
+				if (Properties.Settings.Default.Grouped)
 				{
-					if(item.Contains(@"HomeworldRM\DataUpdates\"))
+					if (item.Contains(@"HomeworldRM\DataUpdates\"))
 					{
 						folderName = "DataUpdates";
 					}
@@ -99,16 +99,21 @@ namespace XUnpack
 						folderName = "Data";
 					}
 				}
+				else if(Properties.Settings.Default.Combined)
+				{
+					folderName = "Data";
+				}
+				
 
 				if(noDecrypt)
 				{
-					args = "-e \"" + MainForm.outputDir + "\\" + folderName + "\" -a \"" + name + ".big\"";
+					args = "-e \"" + Properties.Settings.Default.Output + "\\" + folderName + "\" -a \"" + name + ".big\"";
 					string copyPath = Path.GetDirectoryName(path) + "\\" + name + ".big";
 					File.Copy(item, copyPath);
 				}
 				else
 				{
-					args = "-e \"" + MainForm.outputDir + "\\" + folderName + "\" -a \"" + name + "_decrypted.big\"";
+					args = "-e \"" + Properties.Settings.Default.Output + "\\" + folderName + "\" -a \"" + name + "_decrypted.big\"";
 				}
 
 				WriteAsynch("Starting archiver...\r\n");

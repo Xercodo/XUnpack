@@ -133,13 +133,37 @@ namespace XUnpack.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Seperate {
             get {
                 return ((bool)(this["Seperate"]));
             }
             set {
                 this["Seperate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Grouped {
+            get {
+                return ((bool)(this["Grouped"]));
+            }
+            set {
+                this["Grouped"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Combined {
+            get {
+                return ((bool)(this["Combined"]));
+            }
+            set {
+                this["Combined"] = value;
             }
         }
     }

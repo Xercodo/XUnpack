@@ -16,13 +16,19 @@ namespace XUnpack
 {
 	public partial class MainForm : Form
 	{
-		public static string homeworldDir = "";
-		public static string outputDir = "";
-
 		public MainForm()
 		{
 			InitializeComponent();
 
+			LoadSettings();
+
+			UpdateList();
+
+			CheckVersion();
+		}
+
+		private void LoadSettings()
+		{
 			if (Properties.Settings.Default.DoUpgrade)
 			{
 				Properties.Settings.Default.Upgrade();
@@ -30,11 +36,8 @@ namespace XUnpack
 				Properties.Settings.Default.Save();
 			}
 
-			homeworldDir = Properties.Settings.Default.HomeworldDir;
-			outputDir = Properties.Settings.Default.Output;
-
-			txtHWDir.Text = homeworldDir;
-			txtOutput.Text = outputDir;
+			txtHWDir.Text = Properties.Settings.Default.HomeworldDir;
+			txtOutput.Text = Properties.Settings.Default.Output;
 
 			loading = true;
 			chkEnglish.Checked = Properties.Settings.Default.English;
@@ -46,10 +49,11 @@ namespace XUnpack
 			loading = false;
 			chkLanguage_CheckedChanged(this, new EventArgs());
 
-			chkSeperate.Checked = Properties.Settings.Default.Seperate;
-
-			UpdateList();
-			CheckVersion();
+			folderOptionsUpdating = true;
+			this.rdoSeperate.Checked = Properties.Settings.Default.Seperate;
+			this.rdoDataAndUpdates.Checked = Properties.Settings.Default.Grouped;
+			this.rdoOnlyData.Checked = Properties.Settings.Default.Combined;
+			folderOptionsUpdating = false;
 		}
 
 		private void CheckVersion()
@@ -83,7 +87,7 @@ namespace XUnpack
 
 		private void UpdateList()
 		{
-			string dataDir = homeworldDir + @"\HomeworldRM\Data\";
+			string dataDir = Properties.Settings.Default.HomeworldDir + @"\HomeworldRM\Data\";
 			if (Directory.Exists(dataDir))
 			{
 				DirectoryInfo info = new DirectoryInfo(dataDir);
@@ -95,7 +99,7 @@ namespace XUnpack
 				}
 			}
 
-			string dataUpdateDir = homeworldDir + @"\HomeworldRM\DataUpdates\";
+			string dataUpdateDir = Properties.Settings.Default.HomeworldDir + @"\HomeworldRM\DataUpdates\";
 			if (Directory.Exists(dataUpdateDir))
 			{
 				DirectoryInfo info = new DirectoryInfo(dataUpdateDir);
@@ -113,9 +117,9 @@ namespace XUnpack
 			DialogResult result = folderBrowserDialog1.ShowDialog();
 			if (result == System.Windows.Forms.DialogResult.OK)
 			{
-				homeworldDir = folderBrowserDialog1.SelectedPath;
-				txtHWDir.Text = homeworldDir;
-				Properties.Settings.Default.HomeworldDir = homeworldDir;
+				Properties.Settings.Default.HomeworldDir = folderBrowserDialog1.SelectedPath;
+				txtHWDir.Text = Properties.Settings.Default.HomeworldDir;
+				Properties.Settings.Default.HomeworldDir = Properties.Settings.Default.HomeworldDir;
 				Properties.Settings.Default.Save();
 
 				UpdateList();
@@ -125,7 +129,7 @@ namespace XUnpack
 		RunWindow runner;
 		private void btnGo_Click(object sender, EventArgs e)
 		{
-			if (outputDir == "")
+			if (Properties.Settings.Default.Output == "")
 			{
 				MessageBox.Show(this, "Please select an output directory.");
 				return;
@@ -141,7 +145,7 @@ namespace XUnpack
 
 			if (tabControl1.SelectedTab == tabData)
 			{
-				string dataDir = homeworldDir + @"\HomeworldRM\Data\";
+				string dataDir = Properties.Settings.Default.HomeworldDir + @"\HomeworldRM\Data\";
 				foreach (var item in listBoxData.CheckedItems)
 				{
 					sendList.Add(dataDir + item.ToString());
@@ -149,7 +153,7 @@ namespace XUnpack
 			}
 			else if (tabControl1.SelectedTab == tabUpdates)
 			{
-				string dataDir = homeworldDir + @"\HomeworldRM\DataUpdates\";
+				string dataDir = Properties.Settings.Default.HomeworldDir + @"\HomeworldRM\DataUpdates\";
 				foreach (var item in listBoxUpdate.CheckedItems)
 				{
 					sendList.Add(dataDir + item.ToString());
@@ -194,9 +198,9 @@ namespace XUnpack
 			DialogResult result = folderBrowserDialog1.ShowDialog();
 			if (result == System.Windows.Forms.DialogResult.OK)
 			{
-				outputDir = folderBrowserDialog1.SelectedPath;
-				txtOutput.Text = outputDir;
-				Properties.Settings.Default.Output = outputDir;
+				Properties.Settings.Default.Output = folderBrowserDialog1.SelectedPath;
+				txtOutput.Text = Properties.Settings.Default.Output;
+				Properties.Settings.Default.Output = Properties.Settings.Default.Output;
 				Properties.Settings.Default.Save();
 			}
 		}
@@ -228,12 +232,6 @@ namespace XUnpack
 
 				listBoxUpdate.SetItemChecked(i, chkAllUpdate.Checked);
 			}
-		}
-
-		private void chkSeperate_CheckedChanged(object sender, EventArgs e)
-		{
-			Properties.Settings.Default.Seperate = chkSeperate.Checked;
-			Properties.Settings.Default.Save();
 		}
 
 		bool loading = false;
@@ -297,6 +295,22 @@ namespace XUnpack
 				chkRussian.Checked = chkMultiLingual.Checked;
 				chkSpanish.Checked = chkMultiLingual.Checked;
 				updating = false;
+			}
+		}
+
+		bool folderOptionsUpdating = false;
+		private void rdoSeperate_CheckedChanged(object sender, EventArgs e)
+		{
+			if(!folderOptionsUpdating)
+			{
+				folderOptionsUpdating = true;
+
+				Properties.Settings.Default.Seperate = this.rdoSeperate.Checked;
+				Properties.Settings.Default.Grouped = this.rdoDataAndUpdates.Checked;
+				Properties.Settings.Default.Combined = this.rdoOnlyData.Checked;
+				Properties.Settings.Default.Save();
+
+				folderOptionsUpdating = false;
 			}
 		}
 	}

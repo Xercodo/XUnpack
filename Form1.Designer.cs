@@ -46,7 +46,6 @@
 			this.tabUpdates = new System.Windows.Forms.TabPage();
 			this.listBoxUpdate = new System.Windows.Forms.CheckedListBox();
 			this.chkAllUpdate = new System.Windows.Forms.CheckBox();
-			this.chkSeperate = new System.Windows.Forms.CheckBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.chkMultiLingual = new System.Windows.Forms.CheckBox();
 			this.chkSpanish = new System.Windows.Forms.CheckBox();
@@ -56,6 +55,10 @@
 			this.chkGerman = new System.Windows.Forms.CheckBox();
 			this.chkEnglish = new System.Windows.Forms.CheckBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.rdoSeperate = new System.Windows.Forms.RadioButton();
+			this.rdoDataAndUpdates = new System.Windows.Forms.RadioButton();
+			this.rdoOnlyData = new System.Windows.Forms.RadioButton();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -66,6 +69,7 @@
 			this.tabData.SuspendLayout();
 			this.tabUpdates.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.groupBox4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listBoxData
@@ -169,7 +173,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.chkSeperate);
+			this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
 			this.splitContainer1.Panel2.Controls.Add(this.btnGo);
@@ -246,19 +250,6 @@
 			this.chkAllUpdate.Text = "(De)Select All";
 			this.chkAllUpdate.UseVisualStyleBackColor = true;
 			this.chkAllUpdate.CheckedChanged += new System.EventHandler(this.chkAllUpdate_CheckedChanged);
-			// 
-			// chkSeperate
-			// 
-			this.chkSeperate.AutoSize = true;
-			this.chkSeperate.Location = new System.Drawing.Point(305, 164);
-			this.chkSeperate.Name = "chkSeperate";
-			this.chkSeperate.Size = new System.Drawing.Size(109, 17);
-			this.chkSeperate.TabIndex = 5;
-			this.chkSeperate.Text = "Seperate folders?";
-			this.toolTip1.SetToolTip(this.chkSeperate, "If checked each big file will be extracted into its own folder.\r\n\r\nIf unchecked b" +
-        "ig files will be extracted into Data and DataUpdates folders.");
-			this.chkSeperate.UseVisualStyleBackColor = true;
-			this.chkSeperate.CheckedChanged += new System.EventHandler(this.chkSeperate_CheckedChanged);
 			// 
 			// groupBox3
 			// 
@@ -353,6 +344,58 @@
 			this.chkEnglish.UseVisualStyleBackColor = true;
 			this.chkEnglish.CheckedChanged += new System.EventHandler(this.chkLanguage_CheckedChanged);
 			// 
+			// rdoSeperate
+			// 
+			this.rdoSeperate.AutoSize = true;
+			this.rdoSeperate.Location = new System.Drawing.Point(6, 19);
+			this.rdoSeperate.Name = "rdoSeperate";
+			this.rdoSeperate.Size = new System.Drawing.Size(68, 17);
+			this.rdoSeperate.TabIndex = 7;
+			this.rdoSeperate.TabStop = true;
+			this.rdoSeperate.Text = "Seperate";
+			this.toolTip1.SetToolTip(this.rdoSeperate, "Each .big file will have its own folder.");
+			this.rdoSeperate.UseVisualStyleBackColor = true;
+			this.rdoSeperate.CheckedChanged += new System.EventHandler(this.rdoSeperate_CheckedChanged);
+			// 
+			// rdoDataAndUpdates
+			// 
+			this.rdoDataAndUpdates.AutoSize = true;
+			this.rdoDataAndUpdates.Location = new System.Drawing.Point(6, 42);
+			this.rdoDataAndUpdates.Name = "rdoDataAndUpdates";
+			this.rdoDataAndUpdates.Size = new System.Drawing.Size(66, 17);
+			this.rdoDataAndUpdates.TabIndex = 8;
+			this.rdoDataAndUpdates.TabStop = true;
+			this.rdoDataAndUpdates.Text = "Grouped";
+			this.toolTip1.SetToolTip(this.rdoDataAndUpdates, "The Data and DataUpdates .big files will be kept seperate.");
+			this.rdoDataAndUpdates.UseVisualStyleBackColor = true;
+			this.rdoDataAndUpdates.CheckedChanged += new System.EventHandler(this.rdoSeperate_CheckedChanged);
+			// 
+			// rdoOnlyData
+			// 
+			this.rdoOnlyData.AutoSize = true;
+			this.rdoOnlyData.Location = new System.Drawing.Point(6, 65);
+			this.rdoOnlyData.Name = "rdoOnlyData";
+			this.rdoOnlyData.Size = new System.Drawing.Size(72, 17);
+			this.rdoOnlyData.TabIndex = 9;
+			this.rdoOnlyData.TabStop = true;
+			this.rdoOnlyData.Text = "Combined";
+			this.toolTip1.SetToolTip(this.rdoOnlyData, "All files in the same folder with the most recent extraction replacing the one pr" +
+        "ior.");
+			this.rdoOnlyData.UseVisualStyleBackColor = true;
+			this.rdoOnlyData.CheckedChanged += new System.EventHandler(this.rdoSeperate_CheckedChanged);
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.rdoSeperate);
+			this.groupBox4.Controls.Add(this.rdoOnlyData);
+			this.groupBox4.Controls.Add(this.rdoDataAndUpdates);
+			this.groupBox4.Location = new System.Drawing.Point(153, 135);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(90, 92);
+			this.groupBox4.TabIndex = 10;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "Folder Ouput";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -368,7 +411,6 @@
 			this.groupBox2.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
-			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
@@ -378,6 +420,8 @@
 			this.tabUpdates.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			this.groupBox4.ResumeLayout(false);
+			this.groupBox4.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -408,8 +452,11 @@
 		private System.Windows.Forms.CheckBox chkEnglish;
 		private System.Windows.Forms.CheckBox chkMultiLingual;
 		private System.Windows.Forms.CheckBox chkSpanish;
-		private System.Windows.Forms.CheckBox chkSeperate;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.RadioButton rdoSeperate;
+		private System.Windows.Forms.RadioButton rdoOnlyData;
+		private System.Windows.Forms.RadioButton rdoDataAndUpdates;
 	}
 }
 
